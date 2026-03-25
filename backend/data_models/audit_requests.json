@@ -1,0 +1,55 @@
+{
+    "title": "audit_requests",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "Primary key, auto-increment"
+        },
+        "name": {
+            "type": "string",
+            "description": "Client full name"
+        },
+        "email": {
+            "type": "string",
+            "description": "Client email address"
+        },
+        "company": {
+            "type": "string",
+            "description": "Company name"
+        },
+        "phone": {
+            "type": "string",
+            "description": "Contact phone number"
+        },
+        "message": {
+            "type": "string",
+            "description": "Audit request details"
+        },
+        "status": {
+            "type": "string",
+            "description": "Request status: pending, in_progress, completed, cancelled",
+            "default": "pending"
+        },
+        "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Request creation timestamp"
+        },
+        "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+        }
+    },
+    "required": [
+        "id",
+        "name",
+        "email",
+        "company",
+        "phone",
+        "message",
+        "status",
+        "created_at"
+    ]
+}

@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-background: oklch(0.04 0 0);
+  --color-foreground: oklch(1 0 0);
+  --color-card: oklch(0.11 0.05 252);
+  --color-card-foreground: oklch(1 0 0);
+  --color-popover: oklch(0.11 0.05 252);
+  --color-popover-foreground: oklch(1 0 0);
+  --color-primary: oklch(0.5 0.2 142);
+  --color-primary-foreground: oklch(0 0 0);
+  --color-secondary: oklch(0.5 0.2 189);
+  --color-secondary-foreground: oklch(0 0 0);
+  --color-muted: oklch(0.17 0.03 217);
+  --color-muted-foreground: oklch(0.63 0 0);
+  --color-accent: oklch(0.5 0.2 142);
+  --color-accent-foreground: oklch(0 0 0);
+  --color-destructive: oklch(0.5 0.2 330);
+  --color-destructive-foreground: oklch(1 0 0);
+  --color-border: oklch(0.5 0.2 189);
+  --color-input: oklch(0.17 0.03 217);
+  --color-ring: oklch(0.5 0.2 142);
+  --radius: 0.5rem;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: 'Inter', sans-serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.5), 0 0 40px rgba(0, 217, 255, 0.3);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.5), 0 0 40px rgba(255, 0, 128, 0.3);
+}
+
+.text-glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 217, 255, 0.8), 0 0 20px rgba(0, 217, 255, 0.5);
+}
+
+.backdrop-blur-glass {
+  backdrop-filter: blur(10px);
+  background: rgba(26, 26, 46, 0.7);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 255, 65, 0.8);
+  }
+}
+
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(0, 217, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00D9FF 0%, #00D9FF 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00D9FF 0%, #00D9FF 100%);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00D9FF #0A0A0A;
+}
