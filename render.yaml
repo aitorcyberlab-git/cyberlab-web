@@ -14,7 +14,6 @@ services:
   - type: web
     name: cyberlab-web
     env: static
-    region: frankfurt
     rootDir: frontend
     buildCommand: "npm install -g pnpm && pnpm install && pnpm run build"
     staticPublishPath: ./dist
