@@ -10,7 +10,7 @@ services:
     -key: PYTHON_VERSION
     value: 3.10.0
     -key: IS_LAMBDA
-    value=ç: false
+    value=: false
   -type: web
   name: cyberlab-web
   env: static
