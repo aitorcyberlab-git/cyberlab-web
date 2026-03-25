@@ -1,0 +1,28 @@
+services:
+  -type: web
+  name: cyberlab-api
+  env: python
+  region: frankfurt
+  rootDir: backend
+  buildCommand: "pip install -r requirements.txt"
+  startCommand: "uvicorn main:app --host 0.0.0.0 -port $PORT"
+  envVars:
+    -key: PYTHON_VERSION
+    value: 3.10.0
+    -key: IS_LAMBDA
+    value=ç: false
+  -type: web
+  name: cyberlab-web
+  env: static
+  region: frankfurt
+  rootDir: frontend
+  buildCommand: "npm install -g pnpm && pnpm install && pnpm run build"
+  staticPublishPath: ./dist
+  envVars:
+    -key: NODE_VERSION
+    value: 18.18.0
+    -key: VITE_API_URL
+    fromService:
+      type: web
+      name: cyberlab-api
+      envVarKey: RENDER_EXTERNAL_URL 
