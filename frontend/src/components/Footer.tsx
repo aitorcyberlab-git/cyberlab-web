@@ -53,24 +53,24 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-[#00D9FF] mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/aviso-legal" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <Link to="/aviso-legal" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('footer.legalNotice')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/politica-privacidad" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <Link to="/politica-privacidad" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('footer.privacy')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/politica-cookies" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <Link to="/politica-cookies" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('footer.cookies')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/terminos-condiciones" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <Link to="/terminos-condiciones" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('footer.terms')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
