@@ -11,6 +11,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from core.database import get_db
 from services.audit_requests import Audit_requestsService
 
+import aiosmtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+import os
 # Set up logging
 logger = logging.getLogger(__name__)
 
@@ -201,6 +205,10 @@ async def create_audit_requests(
             raise HTTPException(status_code=400, detail="Failed to create audit_requests")
         
         logger.info(f"Audit_requests created successfully with id: {result.id}")
+
+        # ✅ Enviar email tras guardar en BD
+        await send_audit_email(data)
+
         return result
     except ValueError as e:
         logger.error(f"Validation error creating audit_requests: {str(e)}")
@@ -209,6 +217,45 @@ async def create_audit_requests(
         logger.error(f"Error creating audit_requests: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=f"Internal server error: {str(e)}")
 
+# Añade esta función auxiliar en el mismo archivo
+async def send_audit_email(data: Audit_requestsData):
+    try:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = f"Nueva solicitud de auditoría - {data.company}"
+        msg["From"] = os.getenv("SMTP_USER")
+        msg["To"] = os.getenv("AUDIT_RECIPIENT_EMAIL")
+        msg["Reply-To"] = data.email
+
+        html = f"""
+        <html>
+          <body style="font-family: Arial, sans-serif; color: #333;">
+            <h2 style="color: #00D9FF;">Nueva Solicitud de Auditoría</h2>
+            <hr/>
+            <p><strong>Nombre:</strong> {data.name}</p>
+            <p><strong>Email:</strong> {data.email}</p>
+            <p><strong>Empresa:</strong> {data.company}</p>
+            <p><strong>Teléfono:</strong> {data.phone}</p>
+            <p><strong>Mensaje:</strong><br/>{data.message}</p>
+            <hr/>
+            <p style="color: #999; font-size: 12px;">Solicitud recibida desde el formulario web.</p>
+          </body>
+        </html>
+        """
+
+        msg.attach(MIMEText(html, "html"))
+
+        await aiosmtplib.send(
+            msg,
+            hostname=os.getenv("SMTP_HOST"),
+            port=int(os.getenv("SMTP_PORT", 587)),
+            username=os.getenv("SMTP_USER"),
+            password=os.getenv("SMTP_PASSWORD"),
+            start_tls=True,
+        )
+        logger.info(f"Email de auditoría enviado correctamente para {data.company}")
+    except Exception as e:
+        # No bloqueamos la respuesta si falla el email
+        logger.error(f"Error enviando email de auditoría: {str(e)}")
 
 @router.post("/batch", response_model=List[Audit_requestsResponse], status_code=201)
 async def create_audit_requestss_batch(

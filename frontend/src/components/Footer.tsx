@@ -53,22 +53,22 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-[#00D9FF] mb-4">{t('footer.legal')}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="../pages/LegalNotice.tsx" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <a href="/aviso-legal" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('footer.legalNotice')}
                 </a>
               </li>
               <li>
-                <a href="../pages/PrivacyPolicyPage.tsx" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <a href="/politica-privacidad" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('footer.privacy')}
                 </a>
               </li>
               <li>
-                <a href="../pages/CookiePolicyPage.tsx" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <a href="/politica-cookies" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('footer.cookies')}
                 </a>
               </li>
               <li>
-                <a href="../pages/TermsConditions.tsx" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <a href="/terminos-condiciones" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('footer.terms')}
                 </a>
               </li>

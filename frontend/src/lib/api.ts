@@ -19,7 +19,7 @@ export interface AuditRequestResponse {
 export const submitAuditRequest = async (data: AuditRequestData): Promise<AuditRequestResponse> => {
   try {
     const response = await api.apiCall.invoke({
-      url: '/api/v1/emails/send-audit-request',
+      url: '/api/v1/entities/audit_requests',
       method: 'POST',
       data,
     });
