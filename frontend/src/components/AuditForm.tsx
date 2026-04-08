@@ -7,6 +7,7 @@ import { X, Send, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { submitAuditRequest } from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
+import { Link } from 'react-router-dom';
 
 interface AuditFormProps {
   isOpen: boolean;
@@ -170,9 +171,9 @@ export default function AuditForm({ isOpen, onClose }: AuditFormProps) {
               <div className="bg-[#1A1A2E] border border-cyan-500/30 rounded-lg p-4">
                 <p className="text-xs text-gray-400">
                   Al enviar este formulario, aceptas nuestra{' '}
-                  <a href="/politica-privacidad" className="text-[#00D9FF] hover:underline">
+                  <Link to="/politica-privacidad" className="text-[#00D9FF] hover:underline">
                     Política de Privacidad
-                  </a>
+                  </Link>
                   . Tus datos serán guardados de forma segura en nuestra base de datos y solo se utilizarán para contactarte sobre tu solicitud de auditoría.
                 </p>
               </div>
