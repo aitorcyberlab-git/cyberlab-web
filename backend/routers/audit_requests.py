@@ -29,8 +29,8 @@ class Audit_requestsData(BaseModel):
     company: str
     phone: str
     message: str
-    status: str
-    created_at: datetime
+    status: str = 'pending'                          # ← valor por defecto
+    created_at: datetime = datetime.now()            # ← valor por defecto
     updated_at: Optional[datetime] = None
 
 
