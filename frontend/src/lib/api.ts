@@ -24,7 +24,11 @@ export const submitAuditRequest = async (data: AuditRequestData): Promise<AuditR
       data,
     });
     
-    return response.data;
+    return {
+      success: true,
+      message: 'Solicitud enviada correctamente',
+      request_id: response.data?.id,
+    };
   } catch (error: unknown) {
     const err = error as { data?: { detail?: string }; response?: { data?: { detail?: string } }; message?: string };
     const detail = err?.data?.detail || err?.response?.data?.detail || err.message || 'Error desconocido';
