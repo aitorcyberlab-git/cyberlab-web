@@ -18,7 +18,7 @@ export interface AuditRequestResponse {
 
 export const submitAuditRequest = async (data: AuditRequestData): Promise<AuditRequestResponse> => {
   try {
-    const response = await api.apiCall.invoke({
+    const response = await fetch('https://cyberlab-web-5.onrender.com/api/v1/entities/audit_requests', {
       url: '/api/v1/entities/audit_requests',
       method: 'POST',
       data,
