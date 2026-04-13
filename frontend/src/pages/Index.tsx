@@ -240,7 +240,7 @@ export default function Index() {
             {services.map((service, index) => (
               <Card
                 key={index}
-                className="bg-[#0A0A0A] border-cyan-500/30 p-6 hover:border-[#00D9FF] hover:glow-cyan transition-all duration-300 cursor-pointer group hover:shadow-lg hover:shadow-cyan-500/30"
+                className="bg-[#0A0A0A] border-cyan-500/30 p-6 hover:border-[#00D9FF] hover:glow-cyan transition-all duration-300 cursor-pointer group hover:shadow-lg hover:shadow-cyan-500/50"
               >
                 <div className="mb-4 w-10 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
@@ -272,7 +272,7 @@ export default function Index() {
             {forensicServices.map((service, index) => (
               <Card
                 key={index}
-                className="bg-gradient-to-br from-[#0A0A0A] to-[#1A1A2E] border-cyan-500/30 p-6 hover:border-[#00D9FF] hover:glow-cyan transition-all duration-300 cursor-pointer group hover:shadow-lg hover:shadow-cyan-500/30"
+                className="bg-gradient-to-br from-[#0A0A0A] to-[#1A1A2E] border-cyan-500/30 p-6 hover:border-[#00D9FF] hover:glow-cyan transition-all duration-300 cursor-pointer group hover:shadow-lg hover:shadow-cyan-500/50"
               >
                 <div className="mb-4 w-10 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
@@ -344,7 +344,7 @@ export default function Index() {
             {regulations.map((regulation, index) => (
               <Card
                 key={index}
-                className="bg-gradient-to-br from-[#1A1A2E] to-[#0A0A0A] border-cyan-500/30 p-8 hover:glow-cyan transition-all duration-300 group hover:shadow-lg hover:shadow-cyan-500/30"
+                className="bg-gradient-to-br from-[#1A1A2E] to-[#0A0A0A] border-cyan-500/30 p-8 hover:glow-cyan transition-all duration-300 group hover:shadow-lg hover:shadow-cyan-500/50"
               >
                 <div className="flex justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                   {regulation.icon}
@@ -398,7 +398,7 @@ export default function Index() {
             {whyChooseUs.map((item, index) => (
               <Card
                 key={index}
-                className="bg-gradient-to-br from-[#0A0A0A] to-[#1A1A2E] border-cyan-500/30 p-6 text-center hover:glow-cyan transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/30"
+                className="bg-gradient-to-br from-[#0A0A0A] to-[#1A1A2E] border-cyan-500/30 p-6 text-center hover:glow-cyan transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/50"
               >
                 <div className="flex justify-center mb-4">{item.icon}</div>
                 <h3 className="text-lg font-bold mb-2 text-white">{item.title}</h3>
