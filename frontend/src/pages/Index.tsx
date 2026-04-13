@@ -274,7 +274,7 @@ export default function Index() {
                 key={index}
                 className="bg-gradient-to-br from-[#0A0A0A] to-[#1A1A2E] border-cyan-500/30 p-6 hover:border-[#00D9FF] hover:glow-cyan transition-all duration-300 cursor-pointer group"
               >
-                <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="mb-4 w-10 group-hover:scale-110 transition-transform duration-300">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#00D9FF] transition-colors">
