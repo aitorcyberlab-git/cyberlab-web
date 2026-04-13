@@ -18,20 +18,29 @@ export interface AuditRequestResponse {
 
 export const submitAuditRequest = async (data: AuditRequestData): Promise<AuditRequestResponse> => {
   try {
-    const response = await fetch('https://cyberlab-web-5.onrender.com/api/v1/entities/audit_requests', {
-      url: '/api/v1/entities/audit_requests',
+    const res = await fetch('https://cyberlab-web-5.onrender.com/api/v1/entities/audit_requests', {
       method: 'POST',
-      data,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...data,
+        status: 'pending',
+        created_at: new Date().toISOString(),
+      }),
     });
-    
+
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.detail || 'Error al enviar');
+    }
+
+    const result = await res.json();
     return {
       success: true,
       message: 'Solicitud enviada correctamente',
-      request_id: response.data?.id,
+      request_id: result.id,
     };
   } catch (error: unknown) {
-    const err = error as { data?: { detail?: string }; response?: { data?: { detail?: string } }; message?: string };
-    const detail = err?.data?.detail || err?.response?.data?.detail || err.message || 'Error desconocido';
-    throw new Error(detail);
+    const err = error as Error;
+    throw new Error(err.message || 'Error desconocido');
   }
 };
