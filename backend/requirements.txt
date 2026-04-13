@@ -36,3 +36,4 @@ openai>=1.0.0
 sse-starlette>=1.6.0
 
 aiosmtplib
+resend
