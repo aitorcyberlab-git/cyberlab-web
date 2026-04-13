@@ -18,13 +18,13 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: t('nav.home'), href: '#inicio' },
-    { name: t('nav.about'), href: '#nosotros' },
-    { name: t('nav.services'), href: '#servicios' },
-    { name: t('nav.scanner'), href: '#escaner' },
-    { name: t('nav.contact'), href: '#contacto' },
+    { name: t('nav.home'), href: '/#inicio' },
+    { name: t('nav.about'), href: '/#nosotros' },
+    { name: t('nav.services'), href: '/#servicios' },
+    { name: t('nav.scanner'), href: '/#escaner' },
+    { name: t('nav.contact'), href: '/#contacto' },
   ];
-
+  
   const handleConsultaGratis = () => {
     // Abrir el chatbot
     const chatBotButton = document.querySelector('[data-chatbot-trigger]') as HTMLElement;
