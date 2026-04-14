@@ -54,13 +54,13 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
-              <Link
+              <a
                 key={link.name}
-                to={link.href}
+                href={link.href}
                 className="text-sm font-bold text-white hover:text-[#00D9FF] transition-colors duration-300"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
             <div className="flex items-center space-x-2 text-[#00D9FF]">
               <Phone size={18} />
