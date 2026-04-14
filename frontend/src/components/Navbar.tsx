@@ -3,12 +3,17 @@ import { Button } from '@/components/ui/button';
 import { Menu, X, Phone } from 'lucide-react';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t } = useLanguage();
+  const navigate = useNavigate();
+
+  const { pathname } = useLocation();
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +23,25 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent, href: string) => {
+
+    e.preventDefault();
+
+    const hash = href.split('#')[1];
+
+    if (pathname === '/') {
+
+      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+
+    } else {
+
+      navigate('/#' + hash);
+
+    }
+
+  };
+
+
   const navLinks = [
     { name: t('nav.home'), href: '/#inicio' },
     { name: t('nav.about'), href: '/#nosotros' },
@@ -25,14 +49,12 @@ export default function Navbar() {
     { name: t('nav.scanner'), href: '/#escaner' },
     { name: t('nav.contact'), href: '/#contacto' },
   ];
-  
+
   const handleConsultaGratis = () => {
-    // Abrir el chatbot
     const chatBotButton = document.querySelector('[data-chatbot-trigger]') as HTMLElement;
     if (chatBotButton) {
       chatBotButton.click();
     } else {
-      // Si no encuentra el botón, disparar un evento personalizado
       window.dispatchEvent(new CustomEvent('openChatBot'));
     }
   };
@@ -47,16 +69,17 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className="text-xl font-bold text-glow-cyan">
-              CYBERLAB  FORENSICS
+              CYBERLAB FORENSICS
             </span>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+
                 className="text-sm font-bold text-white hover:text-[#00D9FF] transition-colors duration-300"
               >
                 {link.name}
@@ -67,7 +90,7 @@ export default function Navbar() {
               <span className="text-sm font-bold">640 302 600</span>
             </div>
             <LanguageSwitcher />
-            <Button 
+            <Button
               onClick={handleConsultaGratis}
               className="bg-[#00D9FF] text-black hover:bg-[#00D9FF] font-bold glow-cyan"
             >
@@ -75,7 +98,6 @@ export default function Navbar() {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-white"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -84,15 +106,15 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-4 backdrop-blur-glass rounded-lg p-4">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => { handleNavClick(e, link.href); setIsMobileMenuOpen(false); }}
+
                 className="block text-sm font-bold text-white hover:text-[#00D9FF] transition-colors duration-300"
-                onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
@@ -104,7 +126,7 @@ export default function Navbar() {
             <div className="flex justify-center py-2">
               <LanguageSwitcher />
             </div>
-            <Button 
+            <Button
               onClick={() => {
                 handleConsultaGratis();
                 setIsMobileMenuOpen(false);
