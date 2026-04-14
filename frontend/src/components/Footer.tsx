@@ -1,33 +1,44 @@
-import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram, Clock } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Linkedin, Instagram, Clock} from 'lucide-react';
+import { useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Footer() {
   const { t } = useLanguage();
   const navigate = useNavigate();
-
   const { pathname } = useLocation();
 
+  const OFFSET = 80;
+
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (!hash) return;
+
+    const timer = setTimeout(() => {
+      const el = document.getElementById(hash);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - OFFSET;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   const handleNavClick = (e: React.MouseEvent, href: string) => {
-
     e.preventDefault();
-
     const hash = href.split('#')[1];
 
     if (pathname === '/') {
-
-      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-
+      const el = document.getElementById(hash);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - OFFSET;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
     } else {
-
       navigate('/#' + hash);
-
     }
-
   };
-
 
   return (
     <footer className="bg-[#0A0A0A] border-t border-cyan-500/20 py-12">
@@ -50,15 +61,14 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { label: t('nav.about'),    href: '/#nosotros' },
-                { label: t('nav.services'),  href: '/#servicios' },
-                { label: t('nav.scanner'),   href: '/#escaner'  },
-                { label: t('nav.contact'),   href: '/#contacto' },
+                { label: t('nav.services'), href: '/#servicios' },
+                { label: t('nav.scanner'),  href: '/#escaner'  },
+                { label: t('nav.contact'),  href: '/#contacto' },
               ].map((item) => (
                 <li key={item.href}>
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-
                     className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors"
                   >
                     {item.label}

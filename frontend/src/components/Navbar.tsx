@@ -5,15 +5,12 @@ import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t } = useLanguage();
   const navigate = useNavigate();
-
   const { pathname } = useLocation();
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,24 +20,22 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const OFFSET = 80;
+
   const handleNavClick = (e: React.MouseEvent, href: string) => {
-
     e.preventDefault();
-
     const hash = href.split('#')[1];
 
     if (pathname === '/') {
-
-      document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
-
+      const el = document.getElementById(hash);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - OFFSET;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
     } else {
-
       navigate('/#' + hash);
-
     }
-
   };
-
 
   const navLinks = [
     { name: t('nav.home'), href: '/#inicio' },
@@ -61,9 +56,8 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'backdrop-blur-glass border-b border-cyan-500/20' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-glass border-b border-cyan-500/20' : 'bg-transparent'
+        }`}
     >
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
@@ -79,7 +73,6 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-
                 className="text-sm font-bold text-white hover:text-[#00D9FF] transition-colors duration-300"
               >
                 {link.name}
@@ -113,7 +106,6 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={(e) => { handleNavClick(e, link.href); setIsMobileMenuOpen(false); }}
-
                 className="block text-sm font-bold text-white hover:text-[#00D9FF] transition-colors duration-300"
               >
                 {link.name}
