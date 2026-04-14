@@ -26,24 +26,24 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-[#00D9FF] mb-4">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/#nosotros" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <Link to="/#nosotros" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('nav.about')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#servicios" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <Link to="/#servicios" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('nav.services')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#escaner" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <Link to="/#escaner" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('nav.scanner')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/#contacto" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
+                <Link to="/#contacto" className="text-sm text-gray-400 hover:text-[#00D9FF] transition-colors">
                   {t('nav.contact')}
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
